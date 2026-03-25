@@ -1640,7 +1640,23 @@ function repairLegacyEncoding(rawState) {
           .replaceAll("Jo\u00c3\u00a3o", "Jo\u00e3o")
           .replaceAll("voc\uFFFD", "voc\u00ea")
           .replaceAll("Confer\uFFFDncia", "Confer\u00eancia")
+          .replaceAll("Endere\uFFFDo", "Endere?o")
+          .replaceAll("Digita\uFFFD\uFFFDo", "Digita??o")
+          .replaceAll("Documenta\uFFFD\uFFFDo", "Documenta??o")
+          .replaceAll("Enviada \uFFFD confer\uFFFDncia", "Enviada ? confer?ncia")
+          .replaceAll("Escrit\uFFFDrio", "Escrit?rio")
+          .replaceAll("S\uFFFDcio", "S?cio")
+          .replaceAll("Priorizar confer\uFFFDncia da documenta\uFFFD\uFFFDo enviada.", "Priorizar confer?ncia da documenta??o enviada.")
       : value;
+
+  nextState.periods = (nextState.periods || []).map((period) => ({
+    ...period,
+    name: fix(period.name),
+    steps: (period.steps || []).map((step) => ({
+      ...step,
+      name: fix(step.name)
+    }))
+  }));
 
   nextState.clients = (nextState.clients || []).map((client) => ({
     ...client,
@@ -1648,6 +1664,16 @@ function repairLegacyEncoding(rawState) {
     notes: fix(client.notes),
     contactReference: fix(client.contactReference),
     legacyEmail: fix(client.legacyEmail),
+    phones: (client.phones || []).map((phone) => ({
+      ...phone,
+      label: fix(phone.label),
+      number: fix(phone.number)
+    })),
+    emails: (client.emails || []).map((email) => ({
+      ...email,
+      label: fix(email.label),
+      email: fix(email.email)
+    })),
     messages: (client.messages || []).map((message) => ({
       ...message,
       text: fix(message.text),
