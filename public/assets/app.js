@@ -447,7 +447,7 @@ function renderSidebar(user, currentTab, unreadCount) {
         .join("")}
     </nav>
     <div class="sidebar-footer">
-      <div class="nav-item" data-tab="settings">?? <span>Configurações</span></div>
+      <div class="nav-item" data-tab="settings">[CFG] <span>Configuracoes</span></div>
     </div>
   `;
 
@@ -471,23 +471,23 @@ function renderSidebar(user, currentTab, unreadCount) {
 
 function getNavItems(role) {
   const adminSections = [
-    { label: "Visão Geral", items: [{ key: "dashboard", name: "Dashboard", icon: "??" }, { key: "clients", name: "Clientes", icon: "??" }] },
-    { label: "Cadastros", items: [{ key: "users", name: "Funcionários", icon: "?????" }, { key: "conference", name: "Conferência", icon: "??" }, { key: "statuses", name: "Status", icon: "??" }] },
-    { label: "Importação", items: [{ key: "import", name: "Importar Planilha", icon: "??" }] },
-    { label: "Períodos", items: [{ key: "periods", name: "Gerenciar Períodos", icon: "???" }] },
-    { label: "Relatórios", items: [{ key: "weekly-report", name: "Relatório Semanal", icon: "??" }, { key: "custom-link", name: "Link Conferir", icon: "??" }] },
-    { label: "Banco de Horas", items: [{ key: "hours", name: "Banco de Horas", icon: "??" }] },
-    { label: "Notificações", items: [{ key: "notifications", name: "Notificações", icon: "??" }] }
+    { label: "Visao Geral", items: [{ key: "dashboard", name: "Dashboard", icon: "[DB]" }, { key: "clients", name: "Clientes", icon: "[CL]" }] },
+    { label: "Cadastros", items: [{ key: "users", name: "Funcionarios", icon: "[US]" }, { key: "conference", name: "Conferencia", icon: "[CF]" }, { key: "statuses", name: "Status", icon: "[ST]" }] },
+    { label: "Importacao", items: [{ key: "import", name: "Importar Planilha", icon: "[IM]" }] },
+    { label: "Periodos", items: [{ key: "periods", name: "Gerenciar Periodos", icon: "[PE]" }] },
+    { label: "Relatorios", items: [{ key: "weekly-report", name: "Relatorio Semanal", icon: "[RE]" }, { key: "custom-link", name: "Link Conferir", icon: "[LK]" }] },
+    { label: "Banco de Horas", items: [{ key: "hours", name: "Banco de Horas", icon: "[BH]" }] },
+    { label: "Notificacoes", items: [{ key: "notifications", name: "Notificacoes", icon: "[NT]" }] }
   ];
   const employeeSections = [
-    { label: "Visão Geral", items: [{ key: "dashboard", name: "Dashboard", icon: "??" }, { key: "clients", name: "Clientes", icon: "??" }] },
-    { label: "Banco de Horas", items: [{ key: "hours", name: "Banco de Horas", icon: "??" }] },
-    { label: "Notificações", items: [{ key: "notifications", name: "Notificações", icon: "??" }] }
+    { label: "Visao Geral", items: [{ key: "dashboard", name: "Dashboard", icon: "[DB]" }, { key: "clients", name: "Clientes", icon: "[CL]" }] },
+    { label: "Banco de Horas", items: [{ key: "hours", name: "Banco de Horas", icon: "[BH]" }] },
+    { label: "Notificacoes", items: [{ key: "notifications", name: "Notificacoes", icon: "[NT]" }] }
   ];
   const conferenceSections = [
-    { label: "Visão Geral", items: [{ key: "dashboard", name: "Dashboard", icon: "??" }, { key: "conference", name: "Conferência", icon: "??" }, { key: "clients", name: "Clientes", icon: "??" }] },
-    { label: "Banco de Horas", items: [{ key: "hours", name: "Banco de Horas", icon: "??" }] },
-    { label: "Notificações", items: [{ key: "notifications", name: "Notificações", icon: "??" }] }
+    { label: "Visao Geral", items: [{ key: "dashboard", name: "Dashboard", icon: "[DB]" }, { key: "conference", name: "Conferencia", icon: "[CF]" }, { key: "clients", name: "Clientes", icon: "[CL]" }] },
+    { label: "Banco de Horas", items: [{ key: "hours", name: "Banco de Horas", icon: "[BH]" }] },
+    { label: "Notificacoes", items: [{ key: "notifications", name: "Notificacoes", icon: "[NT]" }] }
   ];
 
   if (role === "admin") return adminSections;
@@ -1628,4 +1628,42 @@ function guardAdmin(user) {
     document.querySelector("#page-content").innerHTML = `<div class="content-card">Acesso restrito ao administrador.</div>`;
     throw new Error("Acesso restrito");
   }
+}
+
+
+function repairLegacyEncoding(rawState) {
+  const nextState = structuredClone(rawState);
+  const fix = (value) =>
+    typeof value === "string"
+      ? value
+          .replaceAll("Jo\uFFFDo", "Jo\u00e3o")
+          .replaceAll("Jo\u00c3\u00a3o", "Jo\u00e3o")
+          .replaceAll("voc\uFFFD", "voc\u00ea")
+          .replaceAll("Confer\uFFFDncia", "Confer\u00eancia")
+      : value;
+
+  nextState.clients = (nextState.clients || []).map((client) => ({
+    ...client,
+    name: fix(client.name),
+    notes: fix(client.notes),
+    contactReference: fix(client.contactReference),
+    legacyEmail: fix(client.legacyEmail),
+    messages: (client.messages || []).map((message) => ({
+      ...message,
+      text: fix(message.text),
+      attachmentName: fix(message.attachmentName)
+    }))
+  }));
+
+  nextState.notifications = (nextState.notifications || []).map((notification) => ({
+    ...notification,
+    title: fix(notification.title),
+    text: fix(notification.text)
+  }));
+
+  if (JSON.stringify(rawState) !== JSON.stringify(nextState)) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(nextState));
+  }
+
+  return nextState;
 }
