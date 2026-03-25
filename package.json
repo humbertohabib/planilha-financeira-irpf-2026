@@ -1,0 +1,13 @@
+{
+  "name": "planilha-financeira-irpf-2026",
+  "version": "1.0.0",
+  "private": false,
+  "description": "MVP para acompanhamento IRPF 2026",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

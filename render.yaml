@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: planilha-financeira-irpf-2026
+    env: node
+    plan: free
+    buildCommand: ""
+    startCommand: "npm start"
