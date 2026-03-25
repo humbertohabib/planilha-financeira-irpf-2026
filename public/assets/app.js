@@ -79,10 +79,10 @@ function initializeSeed() {
     createdAt: nowIso(),
     steps: [
       { id: uid(), name: "Contato Inicial" },
-      { id: uid(), name: "ConferÍncia de EndereÁo" },
-      { id: uid(), name: "DigitaÁ„o" },
-      { id: uid(), name: "DocumentaÁ„o" },
-      { id: uid(), name: "Enviada ‡ conferÍncia" }
+      { id: uid(), name: "Confer√™ncia de Endere√ßo" },
+      { id: uid(), name: "Digita√ß√£o" },
+      { id: uid(), name: "Documenta√ß√£o" },
+      { id: uid(), name: "Enviada √† confer√™ncia" }
     ]
   };
 
@@ -102,7 +102,7 @@ function initializeSeed() {
     {
       id: uid(),
       periodId: currentYearPeriod.id,
-      name: "Jo„o da Silva",
+      name: "Jo√£o da Silva",
       cpf: "123.456.789-09",
       group: "VIP",
       ownerId: employee.id,
@@ -111,18 +111,18 @@ function initializeSeed() {
       statusNote: "",
       phones: [
         { id: uid(), label: "WhatsApp", number: "11987654321", primary: true },
-        { id: uid(), label: "EscritÛrio", number: "1133334444", primary: false }
+        { id: uid(), label: "Escrit√≥rio", number: "1133334444", primary: false }
       ],
       emails: [{ id: uid(), label: "Principal", email: "joao@email.com", primary: true }],
       legacyEmail: "joao@email.com",
-      contactReference: "SÛcio",
-      notes: "Cliente com entrega priorit·ria.",
+      contactReference: "S√≥cio",
+      notes: "Cliente com entrega priorit√°ria.",
       progress: progressTemplate,
       messages: [
         {
           id: uid(),
           fromUserId: admin.id,
-          text: "Priorizar conferÍncia da documentaÁ„o enviada.",
+          text: "Priorizar confer√™ncia da documenta√ß√£o enviada.",
           attachmentName: "checklist-irpf.pdf",
           createdAt: nowIso()
         }
@@ -144,7 +144,7 @@ function initializeSeed() {
       emails: [{ id: uid(), label: "Trabalho", email: "maria@empresa.com", primary: true }],
       legacyEmail: "",
       contactReference: "Assistente",
-      notes: "Aguardando transmiss„o.",
+      notes: "Aguardando transmiss√£o.",
       progress: currentYearPeriod.steps.map((step) => ({ stepId: step.id, done: true })),
       messages: [],
       lockedBy: reviewer.id,
@@ -156,16 +156,16 @@ function initializeSeed() {
     {
       id: uid(),
       userId: employee.id,
-      title: "Novo cliente atribuÌdo",
-      text: "Jo„o da Silva foi vinculado a vocÍ.",
+      title: "Novo cliente atribu√≠do",
+      text: "Jo√£o da Silva foi vinculado a voc√™.",
       read: false,
       createdAt: nowIso()
     }
   ];
 
   seed.hourEntries = [
-    { id: uid(), userId: employee.id, date: "2026-03-18", start: "08:00", end: "17:00", description: "Atendimento e digitaÁ„o" },
-    { id: uid(), userId: employee2.id, date: "2026-03-18", start: "09:00", end: "18:30", description: "ConferÍncia de pendÍncias" }
+    { id: uid(), userId: employee.id, date: "2026-03-18", start: "08:00", end: "17:00", description: "Atendimento e digita√ß√£o" },
+    { id: uid(), userId: employee2.id, date: "2026-03-18", start: "09:00", end: "18:30", description: "Confer√™ncia de pend√™ncias" }
   ];
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(seed));
@@ -257,14 +257,14 @@ function showLoading(text) {
             <div class="brand-logo">IR<br />PF</div>
             <div class="brand-text">
               <strong>IRPF 2026</strong>
-              <span>Painel de controle tribut·rio</span>
+              <span>Painel de controle tribut√°rio</span>
             </div>
           </div>
           <h1>${text}</h1>
-          <p class="muted">Carregando autenticaÁ„o, perÌodos e preferÍncias do sistema.</p>
+          <p class="muted">Carregando autentica√ß√£o, per√≠odos e prefer√™ncias do sistema.</p>
         </div>
         <div class="login-form">
-          <div class="kanban-note">Preparando o ambiente para ${pageType === "admin" ? "administradores" : "operaÁ„o"}.</div>
+          <div class="kanban-note">Preparando o ambiente para ${pageType === "admin" ? "administradores" : "opera√ß√£o"}.</div>
         </div>
       </div>
     </div>
@@ -273,7 +273,7 @@ function showLoading(text) {
 
 function renderLogin() {
   const adminMode = pageType === "admin";
-  const title = adminMode ? "Acesso do administrador" : "Acesso da operaÁ„o";
+  const title = adminMode ? "Acesso do administrador" : "Acesso da opera√ß√£o";
   const allowedRoles = adminMode ? ["admin"] : ["employee", "conference"];
 
   $app.innerHTML = `
@@ -283,12 +283,12 @@ function renderLogin() {
           <div class="brand">
             <div class="brand-logo">IR<br />PF</div>
             <div>
-              <strong>${adminMode ? "IRPF Admin" : "IRPF OperaÁ„o"}</strong>
-              <div class="muted">Controle de clientes, conferÍncia e perÌodos</div>
+              <strong>${adminMode ? "IRPF Admin" : "IRPF Opera√ß√£o"}</strong>
+              <div class="muted">Controle de clientes, confer√™ncia e per√≠odos</div>
             </div>
           </div>
           <h1>${title}</h1>
-          <p>Login separado por papel com persistÍncia de sess„o local, pronto para evoluir para Firebase.</p>
+          <p>Login separado por papel com persist√™ncia de sess√£o local, pronto para evoluir para Firebase.</p>
           <div class="stack">
             ${allowedRoles
               .map((role) => {
@@ -307,7 +307,7 @@ function renderLogin() {
         <form class="login-form" id="login-form">
           <div>
             <h2>${title}</h2>
-            <p class="muted">Use os usu·rios seed ou cadastre novos usu·rios no painel admin.</p>
+            <p class="muted">Use os usu√°rios seed ou cadastre novos usu√°rios no painel admin.</p>
           </div>
           <label class="field">
             <span>E-mail</span>
@@ -320,7 +320,7 @@ function renderLogin() {
           <div class="login-actions">
             <button class="button primary" type="submit">Entrar</button>
             <a class="button secondary" href="${adminMode ? "/index.html" : "/admin.html"}">
-              ${adminMode ? "¡rea operacional" : "¡rea administrativa"}
+              ${adminMode ? "√Årea operacional" : "√Årea administrativa"}
             </a>
           </div>
           <p id="login-feedback" class="muted"></p>
@@ -338,7 +338,7 @@ function renderLogin() {
     const feedback = document.querySelector("#login-feedback");
 
     if (!user || !allowedRoles.includes(user.role)) {
-      feedback.textContent = "Credenciais inv·lidas para esta ·rea.";
+      feedback.textContent = "Credenciais inv√°lidas para esta √°rea.";
       return;
     }
 
@@ -367,7 +367,7 @@ function renderApp() {
             </div>
           </div>
           <div class="row">
-            <span class="notification-badge">N„o lidas: ${notifications.length}</span>
+            <span class="notification-badge">N√£o lidas: ${notifications.length}</span>
             <button class="button secondary" id="theme-toggle">
               ${state.settings.theme === "dark" ? "Modo claro" : "Modo escuro"}
             </button>
@@ -410,7 +410,7 @@ function renderSidebar(user, currentTab, unreadCount) {
     <div class="brand">
       <div class="brand-logo">IR<br />PF</div>
       <div class="brand-text">
-        <strong>${user.role === "admin" ? "IRPF Admin" : "IRPF OperaÁ„o"}</strong>
+        <strong>${user.role === "admin" ? "IRPF Admin" : "IRPF Opera√ß√£o"}</strong>
         <span class="muted">${user.role === "admin" ? "Painel de controle" : "Fluxo em tempo real"}</span>
       </div>
     </div>
@@ -447,7 +447,7 @@ function renderSidebar(user, currentTab, unreadCount) {
         .join("")}
     </nav>
     <div class="sidebar-footer">
-      <div class="nav-item" data-tab="settings">?? <span>ConfiguraÁıes</span></div>
+      <div class="nav-item" data-tab="settings">?? <span>Configura√ß√µes</span></div>
     </div>
   `;
 
@@ -471,23 +471,23 @@ function renderSidebar(user, currentTab, unreadCount) {
 
 function getNavItems(role) {
   const adminSections = [
-    { label: "Vis„o Geral", items: [{ key: "dashboard", name: "Dashboard", icon: "??" }, { key: "clients", name: "Clientes", icon: "??" }] },
-    { label: "Cadastros", items: [{ key: "users", name: "Funcion·rios", icon: "?????" }, { key: "conference", name: "ConferÍncia", icon: "??" }, { key: "statuses", name: "Status", icon: "??" }] },
-    { label: "ImportaÁ„o", items: [{ key: "import", name: "Importar Planilha", icon: "??" }] },
-    { label: "PerÌodos", items: [{ key: "periods", name: "Gerenciar PerÌodos", icon: "???" }] },
-    { label: "RelatÛrios", items: [{ key: "weekly-report", name: "RelatÛrio Semanal", icon: "??" }, { key: "custom-link", name: "Link Conferir", icon: "??" }] },
+    { label: "Vis√£o Geral", items: [{ key: "dashboard", name: "Dashboard", icon: "??" }, { key: "clients", name: "Clientes", icon: "??" }] },
+    { label: "Cadastros", items: [{ key: "users", name: "Funcion√°rios", icon: "?????" }, { key: "conference", name: "Confer√™ncia", icon: "??" }, { key: "statuses", name: "Status", icon: "??" }] },
+    { label: "Importa√ß√£o", items: [{ key: "import", name: "Importar Planilha", icon: "??" }] },
+    { label: "Per√≠odos", items: [{ key: "periods", name: "Gerenciar Per√≠odos", icon: "???" }] },
+    { label: "Relat√≥rios", items: [{ key: "weekly-report", name: "Relat√≥rio Semanal", icon: "??" }, { key: "custom-link", name: "Link Conferir", icon: "??" }] },
     { label: "Banco de Horas", items: [{ key: "hours", name: "Banco de Horas", icon: "??" }] },
-    { label: "NotificaÁıes", items: [{ key: "notifications", name: "NotificaÁıes", icon: "??" }] }
+    { label: "Notifica√ß√µes", items: [{ key: "notifications", name: "Notifica√ß√µes", icon: "??" }] }
   ];
   const employeeSections = [
-    { label: "Vis„o Geral", items: [{ key: "dashboard", name: "Dashboard", icon: "??" }, { key: "clients", name: "Clientes", icon: "??" }] },
+    { label: "Vis√£o Geral", items: [{ key: "dashboard", name: "Dashboard", icon: "??" }, { key: "clients", name: "Clientes", icon: "??" }] },
     { label: "Banco de Horas", items: [{ key: "hours", name: "Banco de Horas", icon: "??" }] },
-    { label: "NotificaÁıes", items: [{ key: "notifications", name: "NotificaÁıes", icon: "??" }] }
+    { label: "Notifica√ß√µes", items: [{ key: "notifications", name: "Notifica√ß√µes", icon: "??" }] }
   ];
   const conferenceSections = [
-    { label: "Vis„o Geral", items: [{ key: "dashboard", name: "Dashboard", icon: "??" }, { key: "conference", name: "ConferÍncia", icon: "??" }, { key: "clients", name: "Clientes", icon: "??" }] },
+    { label: "Vis√£o Geral", items: [{ key: "dashboard", name: "Dashboard", icon: "??" }, { key: "conference", name: "Confer√™ncia", icon: "??" }, { key: "clients", name: "Clientes", icon: "??" }] },
     { label: "Banco de Horas", items: [{ key: "hours", name: "Banco de Horas", icon: "??" }] },
-    { label: "NotificaÁıes", items: [{ key: "notifications", name: "NotificaÁıes", icon: "??" }] }
+    { label: "Notifica√ß√µes", items: [{ key: "notifications", name: "Notifica√ß√µes", icon: "??" }] }
   ];
 
   if (role === "admin") return adminSections;
@@ -542,7 +542,7 @@ function renderCurrentPage(tab) {
       renderCustomLinkPage(content);
       break;
     default:
-      content.innerHTML = `<div class="content-card">P·gina em construÁ„o.</div>`;
+      content.innerHTML = `<div class="content-card">P√°gina em constru√ß√£o.</div>`;
   }
 }
 
@@ -563,22 +563,22 @@ function renderDashboard(content, user) {
     <div class="toolbar">
       <div>
         <h2>Dashboard</h2>
-        <div class="muted">Vis„o geral do perÌodo ${period.name}</div>
+        <div class="muted">Vis√£o geral do per√≠odo ${period.name}</div>
       </div>
       <div class="row">
         ${user.role === "admin" ? `<button class="button secondary" id="dashboard-print">Imprimir</button>` : ""}
       </div>
     </div>
     <div class="metrics">
-      <div class="metric-card"><div>Total de Clientes</div><strong>${clients.length}</strong><span class="muted">no perÌodo</span></div>
-      <div class="metric-card"><div>ConcluÌdos</div><strong>${completed}</strong><span class="muted">${Math.round((completed / total) * 100)}% do total</span></div>
+      <div class="metric-card"><div>Total de Clientes</div><strong>${clients.length}</strong><span class="muted">no per√≠odo</span></div>
+      <div class="metric-card"><div>Conclu√≠dos</div><strong>${completed}</strong><span class="muted">${Math.round((completed / total) * 100)}% do total</span></div>
       <div class="metric-card"><div>Em andamento</div><strong>${inProgress}</strong><span class="muted">clientes com etapas iniciadas</span></div>
-      <div class="metric-card"><div>N„o iniciados</div><strong>${notStarted}</strong><span class="muted">aguardando operaÁ„o</span></div>
+      <div class="metric-card"><div>N√£o iniciados</div><strong>${notStarted}</strong><span class="muted">aguardando opera√ß√£o</span></div>
     </div>
     <div class="content-card">
-      <div class="row" style="justify-content: space-between;"><strong>Progresso Geral do PerÌodo</strong><strong>${Math.round((completed / total) * 100)}%</strong></div>
+      <div class="row" style="justify-content: space-between;"><strong>Progresso Geral do Per√≠odo</strong><strong>${Math.round((completed / total) * 100)}%</strong></div>
       <div class="progress"><span style="width:${(completed / total) * 100}%"></span></div>
-      <div class="muted">${completed} concluÌdos ∑ ${inProgress} em andamento ∑ ${notStarted} n„o iniciados</div>
+      <div class="muted">${completed} conclu√≠dos ¬∑ ${inProgress} em andamento ¬∑ ${notStarted} n√£o iniciados</div>
     </div>
     <div class="grid-2">
       <div class="content-card">
@@ -596,13 +596,13 @@ function renderDashboard(content, user) {
             .join("")}
         </div>
       </div>
-      <div class="content-card"><h3>Status das DeclaraÁıes</h3><div class="chart-wrap"><canvas id="statusChart"></canvas></div></div>
+      <div class="content-card"><h3>Status das Declara√ß√µes</h3><div class="chart-wrap"><canvas id="statusChart"></canvas></div></div>
     </div>
     <div class="grid-2">
       <div class="table-card">
         <h3>Clientes Recentes</h3>
         <table>
-          <thead><tr><th>Cliente</th><th>Status</th><th>Respons·vel</th><th>Progresso</th></tr></thead>
+          <thead><tr><th>Cliente</th><th>Status</th><th>Respons√°vel</th><th>Progresso</th></tr></thead>
           <tbody>
             ${clients
               .slice()
@@ -623,7 +623,7 @@ function renderDashboard(content, user) {
         </table>
       </div>
       <div class="content-card">
-        <h3>${user.role === "admin" ? "Progresso por Funcion·rio" : "Resumo pessoal"}</h3>
+        <h3>${user.role === "admin" ? "Progresso por Funcion√°rio" : "Resumo pessoal"}</h3>
         <div class="stack">
           ${user.role === "admin"
             ? state.users
@@ -639,9 +639,9 @@ function renderDashboard(content, user) {
                 })
                 .join("")
             : `
-              <div class="hour-row"><strong>Meus clientes</strong><div class="muted">${clients.length} no perÌodo atual</div></div>
-              <div class="hour-row"><strong>Minhas notificaÁıes</strong><div class="muted">${state.notifications.filter((item) => item.userId === user.id && !item.read).length} n„o lidas</div></div>
-              <div class="hour-row"><strong>Progresso mÈdio</strong><div class="muted">${Math.round(averageProgress(clients, period))}%</div></div>
+              <div class="hour-row"><strong>Meus clientes</strong><div class="muted">${clients.length} no per√≠odo atual</div></div>
+              <div class="hour-row"><strong>Minhas notifica√ß√µes</strong><div class="muted">${state.notifications.filter((item) => item.userId === user.id && !item.read).length} n√£o lidas</div></div>
+              <div class="hour-row"><strong>Progresso m√©dio</strong><div class="muted">${Math.round(averageProgress(clients, period))}%</div></div>
             `}
         </div>
       </div>
@@ -679,14 +679,14 @@ function renderClientsPage(content, user) {
         <label class="field"><span>Status</span><select id="client-status-filter"><option value="">Todos</option>${statuses.map((status) => `<option value="${status.id}">${status.name}</option>`).join("")}</select></label>
         ${user.role === "admin"
           ? `
-            <label class="field"><span>Respons·vel</span><select id="client-owner-filter"><option value="">Todos</option>${state.users.filter((item) => item.role === "employee").map((item) => `<option value="${item.id}">${item.name}</option>`).join("")}</select></label>
-            <label class="field"><span>ConferÍncia</span><select id="client-conference-filter"><option value="">Todos</option>${state.users.filter((item) => item.role === "conference").map((item) => `<option value="${item.id}">${item.name}</option>`).join("")}</select></label>
+            <label class="field"><span>Respons√°vel</span><select id="client-owner-filter"><option value="">Todos</option>${state.users.filter((item) => item.role === "employee").map((item) => `<option value="${item.id}">${item.name}</option>`).join("")}</select></label>
+            <label class="field"><span>Confer√™ncia</span><select id="client-conference-filter"><option value="">Todos</option>${state.users.filter((item) => item.role === "conference").map((item) => `<option value="${item.id}">${item.name}</option>`).join("")}</select></label>
             <label class="field"><span>Grupo</span><input id="client-group-filter" placeholder="VIP, Regular..." /></label>
           `
           : ""}
       </div>
       <table>
-        <thead><tr><th>Cliente</th><th>Respons·vel</th><th>ConferÍncia</th><th>Grupo</th><th>Contato</th><th>Etapas</th><th>Status</th><th>AÁıes</th></tr></thead>
+        <thead><tr><th>Cliente</th><th>Respons√°vel</th><th>Confer√™ncia</th><th>Grupo</th><th>Contato</th><th>Etapas</th><th>Status</th><th>A√ß√µes</th></tr></thead>
         <tbody id="clients-table-body"></tbody>
       </table>
     </div>
@@ -762,14 +762,14 @@ function renderConferencePage(content, user) {
   const items = state.clients.filter((client) => client.periodId === period.id && client.conferenceIds.includes(user.id));
 
   content.innerHTML = `
-    <div class="toolbar"><div><h2>ConferÍncia</h2><div class="muted">Fila exclusiva para revisores com status, busca por nome e visualizaÁ„o de mensagens.</div></div></div>
+    <div class="toolbar"><div><h2>Confer√™ncia</h2><div class="muted">Fila exclusiva para revisores com status, busca por nome e visualiza√ß√£o de mensagens.</div></div></div>
     <div class="table-card">
       <div class="filters">
         <label class="field" style="flex:1 1 220px;"><span>Buscar por nome/CPF</span><input id="conference-search" placeholder="Digite para filtrar" /></label>
         <label class="field"><span>Status</span><select id="conference-status"><option value="">Todos</option>${state.statuses.map((status) => `<option value="${status.id}">${status.name}</option>`).join("")}</select></label>
       </div>
       <table>
-        <thead><tr><th>Cliente</th><th>Respons·vel</th><th>Status</th><th>Etapas</th><th>Mensagens</th></tr></thead>
+        <thead><tr><th>Cliente</th><th>Respons√°vel</th><th>Status</th><th>Etapas</th><th>Mensagens</th></tr></thead>
         <tbody id="conference-body"></tbody>
       </table>
     </div>
@@ -804,10 +804,10 @@ function renderConferencePage(content, user) {
 function renderUsersPage(content, user) {
   guardAdmin(user);
   content.innerHTML = `
-    <div class="toolbar"><div><h2>Gerenciar Usu·rios</h2><div class="muted">CRUD de funcion·rios, revisores e administradores com senha visÌvel no MVP.</div></div><button class="button primary" id="new-user-btn">Novo usu·rio</button></div>
+    <div class="toolbar"><div><h2>Gerenciar Usu√°rios</h2><div class="muted">CRUD de funcion√°rios, revisores e administradores com senha vis√≠vel no MVP.</div></div><button class="button primary" id="new-user-btn">Novo usu√°rio</button></div>
     <div class="table-card">
       <table>
-        <thead><tr><th>Nome</th><th>E-mail</th><th>Papel</th><th>Senha</th><th>AÁıes</th></tr></thead>
+        <thead><tr><th>Nome</th><th>E-mail</th><th>Papel</th><th>Senha</th><th>A√ß√µes</th></tr></thead>
         <tbody>
           ${state.users
             .map(
@@ -826,7 +826,7 @@ function renderUsersPage(content, user) {
 
   document.querySelector("#new-user-btn").addEventListener("click", () => openUserEditor());
   document.querySelectorAll("[data-user-edit]").forEach((node) => node.addEventListener("click", (event) => { event.stopPropagation(); openUserEditor(node.dataset.userEdit); }));
-  document.querySelectorAll("[data-user-delete]").forEach((node) => node.addEventListener("click", (event) => { event.stopPropagation(); if (confirm("Excluir usu·rio?")) { state.users = state.users.filter((item) => item.id !== node.dataset.userDelete); saveState(); renderApp(); } }));
+  document.querySelectorAll("[data-user-delete]").forEach((node) => node.addEventListener("click", (event) => { event.stopPropagation(); if (confirm("Excluir usu√°rio?")) { state.users = state.users.filter((item) => item.id !== node.dataset.userDelete); saveState(); renderApp(); } }));
 }
 
 function renderImportPage(content, user) {
@@ -834,24 +834,24 @@ function renderImportPage(content, user) {
   content.innerHTML = `
     <div class="grid-2">
       <div class="form-card">
-        <h2>ImportaÁ„o de Clientes</h2>
-        <p class="muted">Aceita .csv nativo e .xlsx via SheetJS. Mapeamento esperado: Nome, Respons·vel, ConferÍncia, ReferÍncia de Contato, Telefone e CPF.</p>
+        <h2>Importa√ß√£o de Clientes</h2>
+        <p class="muted">Aceita .csv nativo e .xlsx via SheetJS. Mapeamento esperado: Nome, Respons√°vel, Confer√™ncia, Refer√™ncia de Contato, Telefone e CPF.</p>
         <div class="stack">
           <label class="field"><span>Arquivo</span><input type="file" id="import-file" accept=".csv,.xlsx,.xls" /></label>
           <label class="field"><span>Clientes existentes</span><select id="import-mode"><option value="skip">Pular existentes</option><option value="overwrite">Sobrescrever existentes</option></select></label>
-          <button class="button primary" id="import-btn">Processar importaÁ„o</button>
+          <button class="button primary" id="import-btn">Processar importa√ß√£o</button>
         </div>
       </div>
       <div class="content-card">
         <h3>Regras do MVP</h3>
         <div class="stack">
-          <div class="hour-row">Respons·vel n„o encontrado: permite vincular a um usu·rio existente ou criar automaticamente.</div>
-          <div class="hour-row">Telefone inv·lido: o sistema pergunta se deseja corrigir na hora.</div>
-          <div class="hour-row">ConferÍncia aceita m˙ltiplos revisores separados por vÌrgula.</div>
+          <div class="hour-row">Respons√°vel n√£o encontrado: permite vincular a um usu√°rio existente ou criar automaticamente.</div>
+          <div class="hour-row">Telefone inv√°lido: o sistema pergunta se deseja corrigir na hora.</div>
+          <div class="hour-row">Confer√™ncia aceita m√∫ltiplos revisores separados por v√≠rgula.</div>
         </div>
       </div>
     </div>
-    <div class="table-card"><h3>Log da importaÁ„o</h3><div id="import-log" class="stack"><div class="muted">Nenhuma importaÁ„o executada.</div></div></div>
+    <div class="table-card"><h3>Log da importa√ß√£o</h3><div id="import-log" class="stack"><div class="muted">Nenhuma importa√ß√£o executada.</div></div></div>
   `;
 
   document.querySelector("#import-btn").addEventListener("click", async () => {
@@ -878,10 +878,10 @@ function renderImportPage(content, user) {
 function renderPeriodsPage(content, user) {
   guardAdmin(user);
   content.innerHTML = `
-    <div class="toolbar"><div><h2>Gerenciar PerÌodos</h2><div class="muted">CRUD de perÌodos com etapas prÛprias e opÁ„o de copiar clientes e/ou etapas.</div></div><button class="button primary" id="new-period-btn">Novo perÌodo</button></div>
+    <div class="toolbar"><div><h2>Gerenciar Per√≠odos</h2><div class="muted">CRUD de per√≠odos com etapas pr√≥prias e op√ß√£o de copiar clientes e/ou etapas.</div></div><button class="button primary" id="new-period-btn">Novo per√≠odo</button></div>
     <div class="table-card">
       <table>
-        <thead><tr><th>Nome</th><th>Ano</th><th>Clientes</th><th>Etapas</th><th>Funcion·rios Ativos</th><th>AÁıes</th></tr></thead>
+        <thead><tr><th>Nome</th><th>Ano</th><th>Clientes</th><th>Etapas</th><th>Funcion√°rios Ativos</th><th>A√ß√µes</th></tr></thead>
         <tbody>
           ${state.periods
             .map((period) => {
@@ -903,7 +903,7 @@ function renderPeriodsPage(content, user) {
   document.querySelectorAll("[data-period-edit]").forEach((node) => node.addEventListener("click", () => openPeriodEditor(node.dataset.periodEdit)));
   document.querySelectorAll("[data-period-delete]").forEach((node) => node.addEventListener("click", () => {
     const id = node.dataset.periodDelete;
-    if (confirm("Excluir perÌodo? Isso remover· os clientes do perÌodo.")) {
+    if (confirm("Excluir per√≠odo? Isso remover√° os clientes do per√≠odo.")) {
       state.periods = state.periods.filter((item) => item.id !== id);
       state.clients = state.clients.filter((client) => client.periodId !== id);
       if (getActivePeriodId() === id) setActivePeriodId(state.periods[0]?.id || null);
@@ -916,10 +916,10 @@ function renderPeriodsPage(content, user) {
 function renderStatusesPage(content, user) {
   guardAdmin(user);
   content.innerHTML = `
-    <div class="toolbar"><div><h2>Status da DeclaraÁ„o</h2><div class="muted">Status personalizados com cor, badge din‚mica e OUTROS fixo ao final.</div></div><button class="button primary" id="new-status-btn">Novo status</button></div>
+    <div class="toolbar"><div><h2>Status da Declara√ß√£o</h2><div class="muted">Status personalizados com cor, badge din√¢mica e OUTROS fixo ao final.</div></div><button class="button primary" id="new-status-btn">Novo status</button></div>
     <div class="table-card">
       <table>
-        <thead><tr><th>Status</th><th>Cor</th><th>Visual</th><th>AÁıes</th></tr></thead>
+        <thead><tr><th>Status</th><th>Cor</th><th>Visual</th><th>A√ß√µes</th></tr></thead>
         <tbody>
           ${sortedStatuses().map((status) => `
               <tr>
@@ -942,8 +942,8 @@ function renderHoursPage(content, user) {
   const monthDefault = new Date().toISOString().slice(0, 7);
 
   content.innerHTML = `
-    <div class="toolbar"><div><h2>Banco de Horas</h2><div class="muted">Registro por data, entrada, saÌda e descriÁ„o com c·lculo autom·tico.</div></div>${user.role !== "admin" ? `<button class="button primary" id="new-hour-btn">Novo registro</button>` : ""}</div>
-    <div class="filters"><label class="field"><span>MÍs</span><input type="month" id="hours-month" value="${monthDefault}" /></label></div>
+    <div class="toolbar"><div><h2>Banco de Horas</h2><div class="muted">Registro por data, entrada, sa√≠da e descri√ß√£o com c√°lculo autom√°tico.</div></div>${user.role !== "admin" ? `<button class="button primary" id="new-hour-btn">Novo registro</button>` : ""}</div>
+    <div class="filters"><label class="field"><span>M√™s</span><input type="month" id="hours-month" value="${monthDefault}" /></label></div>
     <div id="hours-content"></div>
   `;
 
@@ -959,15 +959,15 @@ function renderHoursPage(content, user) {
       }).sort((a, b) => b.total - a.total);
 
       target.innerHTML = `
-        <div class="report-summary"><strong>Total acumulado do mÍs</strong><div>${grouped.reduce((sum, item) => sum + item.total, 0).toFixed(2)} horas</div></div>
+        <div class="report-summary"><strong>Total acumulado do m√™s</strong><div>${grouped.reduce((sum, item) => sum + item.total, 0).toFixed(2)} horas</div></div>
         <div class="stack">
           ${grouped.map(({ userItem, userEntries, total }) => `
             <div class="content-card">
               <div class="row" style="justify-content: space-between;"><strong>${userItem.name}</strong><span>${total.toFixed(2)} horas</span></div>
               <div class="stack">
                 ${userEntries.sort((a, b) => hoursBetween(b.start, b.end) - hoursBetween(a.start, a.end)).map((entry) => `
-                  <div class="hour-row">${entry.date} ∑ ${entry.start} ‡s ${entry.end} ∑ ${hoursBetween(entry.start, entry.end).toFixed(2)}h<div class="muted">${entry.description}</div></div>
-                `).join("") || `<div class="hour-row">Sem registros no mÍs.</div>`}
+                  <div class="hour-row">${entry.date} ¬∑ ${entry.start} √†s ${entry.end} ¬∑ ${hoursBetween(entry.start, entry.end).toFixed(2)}h<div class="muted">${entry.description}</div></div>
+                `).join("") || `<div class="hour-row">Sem registros no m√™s.</div>`}
               </div>
             </div>
           `).join("")}
@@ -980,7 +980,7 @@ function renderHoursPage(content, user) {
       <div class="report-summary"><strong>Total acumulado</strong><div>${monthEntries.reduce((sum, item) => sum + hoursBetween(item.start, item.end), 0).toFixed(2)} horas</div></div>
       <div class="table-card">
         <table>
-          <thead><tr><th>Data</th><th>Entrada</th><th>SaÌda</th><th>Total</th><th>DescriÁ„o</th><th>AÁıes</th></tr></thead>
+          <thead><tr><th>Data</th><th>Entrada</th><th>Sa√≠da</th><th>Total</th><th>Descri√ß√£o</th><th>A√ß√µes</th></tr></thead>
           <tbody>
             ${monthEntries.map((entry) => `
               <tr>
@@ -1006,14 +1006,14 @@ function renderHoursPage(content, user) {
 function renderNotificationsPage(content, user) {
   const items = state.notifications.filter((item) => item.userId === user.id).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   content.innerHTML = `
-    <div class="toolbar"><div><h2>NotificaÁıes</h2><div class="muted">AtualizaÁ„o em tempo real no MVP via estado local compartilhado.</div></div><div class="row"><button class="button secondary" id="mark-read-btn">Marcar todas como lidas</button><button class="button danger" id="clear-notifications-btn">Limpar tudo</button></div></div>
+    <div class="toolbar"><div><h2>Notifica√ß√µes</h2><div class="muted">Atualiza√ß√£o em tempo real no MVP via estado local compartilhado.</div></div><div class="row"><button class="button secondary" id="mark-read-btn">Marcar todas como lidas</button><button class="button danger" id="clear-notifications-btn">Limpar tudo</button></div></div>
     <div class="stack">
       ${items.map((item) => `
           <div class="content-card">
             <div class="row" style="justify-content: space-between;"><strong>${item.title}</strong><span class="muted">${new Date(item.createdAt).toLocaleString("pt-BR")}</span></div>
-            <div>${item.text}</div><div class="muted">${item.read ? "Lida" : "N„o lida"}</div>
+            <div>${item.text}</div><div class="muted">${item.read ? "Lida" : "N√£o lida"}</div>
           </div>
-        `).join("") || `<div class="content-card">Sem notificaÁıes.</div>`}
+        `).join("") || `<div class="content-card">Sem notifica√ß√µes.</div>`}
     </div>
   `;
 
@@ -1040,11 +1040,11 @@ function renderWeeklyReportPage(content, user) {
   });
 
   content.innerHTML = `
-    <div class="toolbar"><div><h2>RelatÛrio Semanal</h2><div class="muted">P·gina exclusiva do administrador com impress„o otimizada.</div></div><button class="button primary" id="weekly-print-btn">Imprimir</button></div>
-    <div class="report-summary"><strong>PerÌodo selecionado</strong><div>${period.name}</div><div class="muted">Total acumulado: ${rows.reduce((sum, item) => sum + item.total, 0)} clientes ∑ MÈdia por operador: ${(rows.reduce((sum, item) => sum + item.total, 0) / (rows.length || 1)).toFixed(1)}</div></div>
-    <div class="table-card"><h3>Controle por Operador</h3><table><thead><tr><th>Operador</th><th>Transmitidas</th><th>Entregues</th><th>Em DigitaÁ„o</th><th>A Fazer</th><th>Total</th><th>Carga Hor·ria</th></tr></thead><tbody>${rows.map((row) => `<tr><td>${row.employee.name}</td><td>${row.transmitted}</td><td>${row.delivered}</td><td>${row.inTyping}</td><td>${row.todo}</td><td>${row.total}</td><td>${row.totalHours.toFixed(2)}h</td></tr>`).join("")}</tbody></table></div>
-    <div class="table-card"><h3>Indicadores Acumulados</h3><table><thead><tr><th>Funcion·rio</th><th>% Entregues</th><th>% Transmitidas</th></tr></thead><tbody>${rows.map((row) => `<tr><td>${row.employee.name}</td><td>${((row.delivered / (row.total || 1)) * 100).toFixed(1)}%</td><td>${((row.transmitted / (row.total || 1)) * 100).toFixed(1)}%</td></tr>`).join("")}<tr><td><strong>GERAL</strong></td><td><strong>${((rows.reduce((sum, row) => sum + row.delivered, 0) / totalClients) * 100).toFixed(1)}%</strong></td><td><strong>${((rows.reduce((sum, row) => sum + row.transmitted, 0) / totalClients) * 100).toFixed(1)}%</strong></td></tr></tbody></table></div>
-    <div class="table-card"><h3>Clientes ENTREGUE aguardando transmiss„o</h3><table><thead><tr><th>Cliente</th><th>Respons·vel</th><th>Contato</th><th>Status</th></tr></thead><tbody>${state.clients.filter((client) => client.periodId === period.id && client.statusId === deliveredStatus?.id).map((client) => { const primaryPhone = client.phones.find((phone) => phone.primary) || client.phones[0]; return `<tr data-client-open="${client.id}"><td>${client.name}</td><td>${userName(client.ownerId)}</td><td>${primaryPhone ? formatPhone(primaryPhone.number) : "-"}</td><td>${renderStatusBadge(client.statusId)}</td></tr>`; }).join("") || `<tr><td colspan="4">Nenhum cliente neste status.</td></tr>`}</tbody></table></div>
+    <div class="toolbar"><div><h2>Relat√≥rio Semanal</h2><div class="muted">P√°gina exclusiva do administrador com impress√£o otimizada.</div></div><button class="button primary" id="weekly-print-btn">Imprimir</button></div>
+    <div class="report-summary"><strong>Per√≠odo selecionado</strong><div>${period.name}</div><div class="muted">Total acumulado: ${rows.reduce((sum, item) => sum + item.total, 0)} clientes ¬∑ M√©dia por operador: ${(rows.reduce((sum, item) => sum + item.total, 0) / (rows.length || 1)).toFixed(1)}</div></div>
+    <div class="table-card"><h3>Controle por Operador</h3><table><thead><tr><th>Operador</th><th>Transmitidas</th><th>Entregues</th><th>Em Digita√ß√£o</th><th>A Fazer</th><th>Total</th><th>Carga Hor√°ria</th></tr></thead><tbody>${rows.map((row) => `<tr><td>${row.employee.name}</td><td>${row.transmitted}</td><td>${row.delivered}</td><td>${row.inTyping}</td><td>${row.todo}</td><td>${row.total}</td><td>${row.totalHours.toFixed(2)}h</td></tr>`).join("")}</tbody></table></div>
+    <div class="table-card"><h3>Indicadores Acumulados</h3><table><thead><tr><th>Funcion√°rio</th><th>% Entregues</th><th>% Transmitidas</th></tr></thead><tbody>${rows.map((row) => `<tr><td>${row.employee.name}</td><td>${((row.delivered / (row.total || 1)) * 100).toFixed(1)}%</td><td>${((row.transmitted / (row.total || 1)) * 100).toFixed(1)}%</td></tr>`).join("")}<tr><td><strong>GERAL</strong></td><td><strong>${((rows.reduce((sum, row) => sum + row.delivered, 0) / totalClients) * 100).toFixed(1)}%</strong></td><td><strong>${((rows.reduce((sum, row) => sum + row.transmitted, 0) / totalClients) * 100).toFixed(1)}%</strong></td></tr></tbody></table></div>
+    <div class="table-card"><h3>Clientes ENTREGUE aguardando transmiss√£o</h3><table><thead><tr><th>Cliente</th><th>Respons√°vel</th><th>Contato</th><th>Status</th></tr></thead><tbody>${state.clients.filter((client) => client.periodId === period.id && client.statusId === deliveredStatus?.id).map((client) => { const primaryPhone = client.phones.find((phone) => phone.primary) || client.phones[0]; return `<tr data-client-open="${client.id}"><td>${client.name}</td><td>${userName(client.ownerId)}</td><td>${primaryPhone ? formatPhone(primaryPhone.number) : "-"}</td><td>${renderStatusBadge(client.statusId)}</td></tr>`; }).join("") || `<tr><td colspan="4">Nenhum cliente neste status.</td></tr>`}</tbody></table></div>
   `;
 
   attachClientOpenHandlers();
@@ -1054,8 +1054,8 @@ function renderWeeklyReportPage(content, user) {
 function renderSettingsPage(content, user) {
   content.innerHTML = `
     <div class="grid-2">
-      <div class="form-card"><h2>ConfiguraÁıes</h2><p class="muted">Modo escuro persistido e link customiz·vel.</p><div class="stack"><label class="field"><span>Modo visual</span><select id="settings-theme"><option value="light" ${state.settings.theme === "light" ? "selected" : ""}>Claro</option><option value="dark" ${state.settings.theme === "dark" ? "selected" : ""}>Escuro</option></select></label><label class="field"><span>Link customiz·vel</span><input id="settings-link" value="${state.settings.customReportLink || ""}" /></label><button class="button primary" id="save-settings-btn">Salvar configuraÁıes</button></div></div>
-      <div class="content-card"><h3>Resumo do usu·rio</h3><div class="stack"><div class="hour-row">Nome: ${user.name}</div><div class="hour-row">Papel: ${labelRole(user.role)}</div><div class="hour-row">PerÌodo ativo: ${getActivePeriod()?.name || "-"}</div></div></div>
+      <div class="form-card"><h2>Configura√ß√µes</h2><p class="muted">Modo escuro persistido e link customiz√°vel.</p><div class="stack"><label class="field"><span>Modo visual</span><select id="settings-theme"><option value="light" ${state.settings.theme === "light" ? "selected" : ""}>Claro</option><option value="dark" ${state.settings.theme === "dark" ? "selected" : ""}>Escuro</option></select></label><label class="field"><span>Link customiz√°vel</span><input id="settings-link" value="${state.settings.customReportLink || ""}" /></label><button class="button primary" id="save-settings-btn">Salvar configura√ß√µes</button></div></div>
+      <div class="content-card"><h3>Resumo do usu√°rio</h3><div class="stack"><div class="hour-row">Nome: ${user.name}</div><div class="hour-row">Papel: ${labelRole(user.role)}</div><div class="hour-row">Per√≠odo ativo: ${getActivePeriod()?.name || "-"}</div></div></div>
     </div>
   `;
 
@@ -1070,7 +1070,7 @@ function renderSettingsPage(content, user) {
 
 function renderCustomLinkPage(content) {
   content.innerHTML = `
-    <div class="content-card"><h2>Link Conferir</h2><p class="muted">Atalho configur·vel pelo administrador.</p><a class="button primary" href="${state.settings.customReportLink || "#"}" target="_blank" rel="noreferrer">Abrir link</a></div>
+    <div class="content-card"><h2>Link Conferir</h2><p class="muted">Atalho configur√°vel pelo administrador.</p><a class="button primary" href="${state.settings.customReportLink || "#"}" target="_blank" rel="noreferrer">Abrir link</a></div>
   `;
 }
 
@@ -1114,7 +1114,7 @@ function attachStatusSelectHandlers() {
       const client = state.clients.find((item) => item.id === select.dataset.clientId);
       client.statusId = event.target.value;
       if (statusName(event.target.value) === "OUTROS") {
-        client.statusNote = prompt("Descreva a observaÁ„o para OUTROS:", client.statusNote || "") || "";
+        client.statusNote = prompt("Descreva a observa√ß√£o para OUTROS:", client.statusNote || "") || "";
       }
       saveState();
       renderApp();
@@ -1127,16 +1127,16 @@ function openClientDetail(clientId) {
   const period = state.periods.find((item) => item.id === client.periodId);
 
   openModal(`
-    <div class="modal-header"><div><h2>${client.name}</h2><div class="muted">${client.cpf} ∑ ${statusName(client.statusId)}</div></div><button class="button secondary" data-modal-close>Fechar</button></div>
+    <div class="modal-header"><div><h2>${client.name}</h2><div class="muted">${client.cpf} ¬∑ ${statusName(client.statusId)}</div></div><button class="button secondary" data-modal-close>Fechar</button></div>
     <div class="grid-2">
       <div class="stack">
-        <div class="content-card"><h3>InformaÁıes</h3><div class="contact-list"><div class="contact-item">Respons·vel: ${userName(client.ownerId)}</div><div class="contact-item">ConferÍncia: ${client.conferenceIds.map((id) => userName(id)).join(", ") || "-"}</div><div class="contact-item">Grupo: ${client.group || "-"}</div><div class="contact-item">ReferÍncia de contato: ${client.contactReference || "-"}</div></div></div>
-        <div class="content-card"><h3>Etapas clic·veis</h3><div class="timeline">${period.steps.map((step) => { const progressItem = client.progress.find((item) => item.stepId === step.id); return `<button class="timeline-item" data-step-toggle="${client.id}" data-step-id="${step.id}">${progressItem?.done ? "?" : "?"} ${step.name}</button>`; }).join("")}</div></div>
+        <div class="content-card"><h3>Informa√ß√µes</h3><div class="contact-list"><div class="contact-item">Respons√°vel: ${userName(client.ownerId)}</div><div class="contact-item">Confer√™ncia: ${client.conferenceIds.map((id) => userName(id)).join(", ") || "-"}</div><div class="contact-item">Grupo: ${client.group || "-"}</div><div class="contact-item">Refer√™ncia de contato: ${client.contactReference || "-"}</div></div></div>
+        <div class="content-card"><h3>Etapas clic√°veis</h3><div class="timeline">${period.steps.map((step) => { const progressItem = client.progress.find((item) => item.stepId === step.id); return `<button class="timeline-item" data-step-toggle="${client.id}" data-step-id="${step.id}">${progressItem?.done ? "?" : "?"} ${step.name}</button>`; }).join("")}</div></div>
       </div>
       <div class="stack">
-        <div class="content-card"><h3>Contatos</h3><div class="contact-list">${client.phones.map((phone) => `<div class="contact-item">${phone.primary ? "Principal ∑ " : ""}<a href="${whatsUrl(phone.number)}" target="_blank" rel="noreferrer">${phone.label}: ${formatPhone(phone.number)}</a></div>`).join("")}${client.emails.map((mail) => `<div class="contact-item">${mail.primary ? "Principal ∑ " : ""}<a href="mailto:${mail.email}">${mail.label}: ${mail.email}</a></div>`).join("")}${client.legacyEmail && !client.emails.length ? `<div class="contact-item"><a href="mailto:${client.legacyEmail}">${client.legacyEmail}</a></div>` : ""}</div></div>
-        <div class="content-card"><h3>ObservaÁıes</h3><label class="field"><textarea id="client-notes">${client.notes || ""}</textarea></label></div>
-        <div class="content-card"><h3>Mensagens / PendÍncias</h3><div class="message-list">${client.messages.map((message) => `<div class="message-item"><strong>${userName(message.fromUserId)}</strong><div>${message.text}</div>${message.attachmentName ? `<div class="muted">Anexo: ${message.attachmentName}</div>` : ""}</div>`).join("") || `<div class="message-item">Sem mensagens.</div>`}</div>${user.role !== "conference" || client.conferenceIds.includes(user.id) ? `<div class="stack"><label class="field"><span>Nova mensagem</span><textarea id="client-message-text" placeholder="Descreva a pendÍncia"></textarea></label><label class="field"><span>Anexo (nome)</span><input id="client-message-attachment" placeholder="ex.: comprovante.pdf" /></label><button class="button primary" id="send-client-message">Enviar mensagem</button></div>` : ""}</div>
+        <div class="content-card"><h3>Contatos</h3><div class="contact-list">${client.phones.map((phone) => `<div class="contact-item">${phone.primary ? "Principal ¬∑ " : ""}<a href="${whatsUrl(phone.number)}" target="_blank" rel="noreferrer">${phone.label}: ${formatPhone(phone.number)}</a></div>`).join("")}${client.emails.map((mail) => `<div class="contact-item">${mail.primary ? "Principal ¬∑ " : ""}<a href="mailto:${mail.email}">${mail.label}: ${mail.email}</a></div>`).join("")}${client.legacyEmail && !client.emails.length ? `<div class="contact-item"><a href="mailto:${client.legacyEmail}">${client.legacyEmail}</a></div>` : ""}</div></div>
+        <div class="content-card"><h3>Observa√ß√µes</h3><label class="field"><textarea id="client-notes">${client.notes || ""}</textarea></label></div>
+        <div class="content-card"><h3>Mensagens / Pend√™ncias</h3><div class="message-list">${client.messages.map((message) => `<div class="message-item"><strong>${userName(message.fromUserId)}</strong><div>${message.text}</div>${message.attachmentName ? `<div class="muted">Anexo: ${message.attachmentName}</div>` : ""}</div>`).join("") || `<div class="message-item">Sem mensagens.</div>`}</div>${user.role !== "conference" || client.conferenceIds.includes(user.id) ? `<div class="stack"><label class="field"><span>Nova mensagem</span><textarea id="client-message-text" placeholder="Descreva a pend√™ncia"></textarea></label><label class="field"><span>Anexo (nome)</span><input id="client-message-attachment" placeholder="ex.: comprovante.pdf" /></label><button class="button primary" id="send-client-message">Enviar mensagem</button></div>` : ""}</div>
       </div>
     </div>
   `);
@@ -1176,11 +1176,11 @@ function openClientEditor(clientId) {
     <div class="modal-header"><div><h2>${isEdit ? "Editar cliente" : "Novo cliente"}</h2><div class="muted">${period.name}</div></div><button class="button secondary" data-modal-close>Fechar</button></div>
     <form id="client-editor-form" class="stack">
       <div class="split"><label class="field"><span>Nome</span><input name="name" value="${client?.name || ""}" required /></label><label class="field"><span>CPF</span><input name="cpf" value="${client?.cpf || ""}" required /></label></div>
-      <div class="split"><label class="field"><span>Respons·vel</span><select name="ownerId">${ownerOptions.map((item) => `<option value="${item.id}" ${client?.ownerId === item.id ? "selected" : ""}>${item.name}</option>`).join("")}</select></label><label class="field"><span>Grupo</span><input name="group" value="${client?.group || ""}" /></label></div>
-      <label class="field"><span>ConferÍncia (m˙ltipla)</span><select name="conferenceIds" multiple>${conferenceOptions.map((item) => `<option value="${item.id}" ${client?.conferenceIds?.includes(item.id) ? "selected" : ""}>${item.name}</option>`).join("")}</select></label>
-      <label class="field"><span>ReferÍncia de contato</span><input name="contactReference" value="${client?.contactReference || ""}" /></label>
+      <div class="split"><label class="field"><span>Respons√°vel</span><select name="ownerId">${ownerOptions.map((item) => `<option value="${item.id}" ${client?.ownerId === item.id ? "selected" : ""}>${item.name}</option>`).join("")}</select></label><label class="field"><span>Grupo</span><input name="group" value="${client?.group || ""}" /></label></div>
+      <label class="field"><span>Confer√™ncia (m√∫ltipla)</span><select name="conferenceIds" multiple>${conferenceOptions.map((item) => `<option value="${item.id}" ${client?.conferenceIds?.includes(item.id) ? "selected" : ""}>${item.name}</option>`).join("")}</select></label>
+      <label class="field"><span>Refer√™ncia de contato</span><input name="contactReference" value="${client?.contactReference || ""}" /></label>
       <div class="grid-2"><div class="content-card"><h3>Telefones</h3><div id="phones-editor" class="stack"></div><button type="button" class="button secondary" id="add-phone-btn">Adicionar telefone</button></div><div class="content-card"><h3>E-mails</h3><div id="emails-editor" class="stack"></div><button type="button" class="button secondary" id="add-email-btn">Adicionar e-mail</button></div></div>
-      <label class="field"><span>ObservaÁıes</span><textarea name="notes">${client?.notes || ""}</textarea></label>
+      <label class="field"><span>Observa√ß√µes</span><textarea name="notes">${client?.notes || ""}</textarea></label>
       <div class="modal-actions"><button class="button primary" type="submit">Salvar</button>${isEdit ? `<button class="button danger" type="button" id="delete-client-btn">Excluir</button>` : ""}</div>
     </form>
   `);
@@ -1194,7 +1194,7 @@ function openClientEditor(clientId) {
   const drawPhones = () => {
     phonesRoot.innerHTML = phoneItems.map((phone) => `
       <div class="contact-item">
-        <div class="split"><label class="field"><span>Nome</span><input data-phone-label="${phone.id}" value="${phone.label}" /></label><label class="field"><span>N˙mero</span><input data-phone-number="${phone.id}" value="${phone.number}" /></label></div>
+        <div class="split"><label class="field"><span>Nome</span><input data-phone-label="${phone.id}" value="${phone.label}" /></label><label class="field"><span>N√∫mero</span><input data-phone-number="${phone.id}" value="${phone.number}" /></label></div>
         <label><input type="radio" name="phone-primary" value="${phone.id}" ${phone.primary ? "checked" : ""} /> contato principal</label>
       </div>
     `).join("");
@@ -1239,7 +1239,7 @@ function openClientEditor(clientId) {
 
     if (!client) {
       state.clients.push(next);
-      notify(next.ownerId, "Novo cliente cadastrado", `${next.name} foi atribuÌdo a vocÍ.`);
+      notify(next.ownerId, "Novo cliente cadastrado", `${next.name} foi atribu√≠do a voc√™.`);
     } else if (previousOwnerId !== next.ownerId) {
       notify(next.ownerId, "Cliente transferido", `${next.name} foi transferido para sua carteira.`);
     }
@@ -1256,7 +1256,7 @@ function openClientEditor(clientId) {
 function openUserEditor(userId) {
   const user = state.users.find((item) => item.id === userId);
   openModal(`
-    <div class="modal-header"><div><h2>${user ? "Editar usu·rio" : "Novo usu·rio"}</h2><div class="muted">Senha padr„o sugerida: primeironome+123</div></div><button class="button secondary" data-modal-close>Fechar</button></div>
+    <div class="modal-header"><div><h2>${user ? "Editar usu√°rio" : "Novo usu√°rio"}</h2><div class="muted">Senha padr√£o sugerida: primeironome+123</div></div><button class="button secondary" data-modal-close>Fechar</button></div>
     <form id="user-editor-form" class="stack">
       <div class="split"><label class="field"><span>Nome</span><input name="name" value="${user?.name || ""}" required /></label><label class="field"><span>E-mail</span><input name="email" value="${user?.email || ""}" required type="email" /></label></div>
       <div class="split"><label class="field"><span>Papel</span><select name="role">${["employee", "conference", "admin"].map((role) => `<option value="${role}" ${user?.role === role ? "selected" : ""}>${labelRole(role)}</option>`).join("")}</select></label><label class="field"><span>Senha</span><input name="password" value="${user?.password || ""}" required /></label></div>
@@ -1283,12 +1283,12 @@ function openPeriodEditor(periodId) {
   const previous = state.periods[state.periods.length - 1];
   const steps = period?.steps?.length ? structuredClone(period.steps) : [{ id: uid(), name: "Contato Inicial" }];
   openModal(`
-    <div class="modal-header"><div><h2>${period ? "Editar perÌodo" : "Novo perÌodo"}</h2></div><button class="button secondary" data-modal-close>Fechar</button></div>
+    <div class="modal-header"><div><h2>${period ? "Editar per√≠odo" : "Novo per√≠odo"}</h2></div><button class="button secondary" data-modal-close>Fechar</button></div>
     <form id="period-editor-form" class="stack">
       <div class="split"><label class="field"><span>Nome</span><input name="name" value="${period?.name || ""}" required /></label><label class="field"><span>Ano</span><input name="year" value="${period?.year || new Date().getFullYear()}" required type="number" /></label></div>
-      ${!period ? `<div class="split"><label><input type="checkbox" name="copySteps" checked /> Copiar etapas do perÌodo anterior</label><label><input type="checkbox" name="copyClients" /> Copiar clientes do perÌodo anterior</label></div>` : ""}
+      ${!period ? `<div class="split"><label><input type="checkbox" name="copySteps" checked /> Copiar etapas do per√≠odo anterior</label><label><input type="checkbox" name="copyClients" /> Copiar clientes do per√≠odo anterior</label></div>` : ""}
       <div class="content-card"><div class="row" style="justify-content: space-between;"><strong>Etapas</strong><button type="button" class="button secondary" id="add-step-btn">Adicionar etapa</button></div><div id="steps-editor" class="stack"></div></div>
-      <button class="button primary" type="submit">Salvar perÌodo</button>
+      <button class="button primary" type="submit">Salvar per√≠odo</button>
     </form>
   `);
   attachModalClose();
@@ -1367,7 +1367,7 @@ function openHourEditor(entryId) {
   const entry = state.hourEntries.find((item) => item.id === entryId);
   openModal(`
     <div class="modal-header"><div><h2>${entry ? "Editar registro" : "Novo registro"}</h2></div><button class="button secondary" data-modal-close>Fechar</button></div>
-    <form id="hour-editor-form" class="stack"><div class="split"><label class="field"><span>Data</span><input name="date" type="date" value="${entry?.date || new Date().toISOString().slice(0, 10)}" required /></label><label class="field"><span>Entrada</span><input name="start" type="time" value="${entry?.start || "08:00"}" required /></label></div><div class="split"><label class="field"><span>SaÌda</span><input name="end" type="time" value="${entry?.end || "17:00"}" required /></label><label class="field"><span>DescriÁ„o</span><input name="description" value="${entry?.description || ""}" required /></label></div><button class="button primary" type="submit">Salvar</button></form>
+    <form id="hour-editor-form" class="stack"><div class="split"><label class="field"><span>Data</span><input name="date" type="date" value="${entry?.date || new Date().toISOString().slice(0, 10)}" required /></label><label class="field"><span>Entrada</span><input name="start" type="time" value="${entry?.start || "08:00"}" required /></label></div><div class="split"><label class="field"><span>Sa√≠da</span><input name="end" type="time" value="${entry?.end || "17:00"}" required /></label><label class="field"><span>Descri√ß√£o</span><input name="description" value="${entry?.description || ""}" required /></label></div><button class="button primary" type="submit">Salvar</button></form>
   `);
   attachModalClose();
   document.querySelector("#hour-editor-form").addEventListener("submit", (event) => {
@@ -1396,28 +1396,28 @@ function importClients(rows, mode) {
       return;
     }
 
-    let owner = findUserByName(row["Respons·vel"] || row["Responsavel"] || row["responsavel"]);
-    const conferenceNames = String(row["ConferÍncia"] || row["Conferencia"] || row["conferencia"] || "").split(",").map((item) => item.trim()).filter(Boolean);
+    let owner = findUserByName(row["Respons√°vel"] || row["Responsavel"] || row["responsavel"]);
+    const conferenceNames = String(row["Confer√™ncia"] || row["Conferencia"] || row["conferencia"] || "").split(",").map((item) => item.trim()).filter(Boolean);
     const conferenceIds = conferenceNames.map((item) => findUserByName(item)).filter(Boolean).map((item) => item.id);
 
     if (!owner) {
-      const ownerName = String(row["Respons·vel"] || row["Responsavel"] || "Sem Nome").trim();
-      const shouldCreate = confirm(`Respons·vel "${ownerName}" n„o encontrado. Deseja criar usu·rio automaticamente?`);
+      const ownerName = String(row["Respons√°vel"] || row["Responsavel"] || "Sem Nome").trim();
+      const shouldCreate = confirm(`Respons√°vel "${ownerName}" n√£o encontrado. Deseja criar usu√°rio automaticamente?`);
       if (shouldCreate) {
         const firstName = ownerName.split(" ")[0]?.toLowerCase() || "usuario";
         owner = { id: uid(), name: ownerName, email: `${normalize(ownerName).replace(/\s+/g, ".")}@irpf.local`, password: `${firstName}123`, role: "employee", activeByPeriod: {} };
         state.users.push(owner);
-        logs.push(`Usu·rio criado automaticamente para ${ownerName}.`);
+        logs.push(`Usu√°rio criado automaticamente para ${ownerName}.`);
       } else {
         const existingNames = state.users.filter((user) => user.role === "employee").map((user) => user.name).join(", ");
-        const chosen = prompt(`Digite o nome de um usu·rio existente para vincular "${ownerName}". DisponÌveis: ${existingNames}`, existingNames.split(",")[0] || "");
+        const chosen = prompt(`Digite o nome de um usu√°rio existente para vincular "${ownerName}". Dispon√≠veis: ${existingNames}`, existingNames.split(",")[0] || "");
         owner = findUserByName(chosen);
       }
     }
 
     let phone = sanitizePhone(row["Telefone"] || row["telefone"] || "");
     if (phone && phone.length < 10) {
-      const fixed = prompt(`Telefone inv·lido para ${name}. Corrija agora:`, String(row["Telefone"] || ""));
+      const fixed = prompt(`Telefone inv√°lido para ${name}. Corrija agora:`, String(row["Telefone"] || ""));
       phone = sanitizePhone(fixed || "");
     }
 
@@ -1432,7 +1432,7 @@ function importClients(rows, mode) {
     target.cpf = cpf;
     target.ownerId = owner?.id || state.users.find((item) => item.role === "employee")?.id;
     target.conferenceIds = conferenceIds;
-    target.contactReference = row["ReferÍncia de Contato"] || row["Referencia de Contato"] || "";
+    target.contactReference = row["Refer√™ncia de Contato"] || row["Referencia de Contato"] || "";
     target.group = row["Grupo"] || "Importado";
     target.phones = phone ? [{ id: uid(), label: target.contactReference || "Importado", number: phone, primary: true }] : [];
     target.emails = target.emails || [];
@@ -1441,7 +1441,7 @@ function importClients(rows, mode) {
 
     if (!existing) {
       state.clients.push(target);
-      notify(target.ownerId, "Novo cliente importado", `${target.name} foi adicionado ‡ sua carteira.`);
+      notify(target.ownerId, "Novo cliente importado", `${target.name} foi adicionado √† sua carteira.`);
       logs.push(`${name}: cliente importado com sucesso.`);
     } else {
       logs.push(`${name}: cliente sobrescrito.`);
@@ -1518,31 +1518,31 @@ function userName(userId) {
 }
 
 function labelRole(role) {
-  return role === "admin" ? "Administrador" : role === "conference" ? "ConferÍncia" : "Funcion·rio";
+  return role === "admin" ? "Administrador" : role === "conference" ? "Confer√™ncia" : "Funcion√°rio";
 }
 
 function navTitle(key) {
   const map = {
     dashboard: "Dashboard",
     clients: "Clientes",
-    conference: "ConferÍncia",
-    users: "Funcion·rios",
+    conference: "Confer√™ncia",
+    users: "Funcion√°rios",
     import: "Importar Planilha",
-    periods: "Gerenciar PerÌodos",
+    periods: "Gerenciar Per√≠odos",
     statuses: "Status",
     hours: "Banco de Horas",
-    notifications: "NotificaÁıes",
-    settings: "ConfiguraÁıes",
-    "weekly-report": "RelatÛrio Semanal",
+    notifications: "Notifica√ß√µes",
+    settings: "Configura√ß√µes",
+    "weekly-report": "Relat√≥rio Semanal",
     "custom-link": "Link Conferir"
   };
   return map[key] || "Painel";
 }
 
 function navSubtitle(key, role) {
-  if (key === "dashboard") return role === "admin" ? "Vis„o geral do perÌodo com filtros operacionais" : "Seus n˙meros e evoluÁ„o do perÌodo";
-  if (key === "clients") return "Tabela/lista com filtros, modal e progresso clic·vel";
-  return "MÛdulo operacional do MVP";
+  if (key === "dashboard") return role === "admin" ? "Vis√£o geral do per√≠odo com filtros operacionais" : "Seus n√∫meros e evolu√ß√£o do per√≠odo";
+  if (key === "clients") return "Tabela/lista com filtros, modal e progresso clic√°vel";
+  return "M√≥dulo operacional do MVP";
 }
 
 function initials(name) {
@@ -1616,7 +1616,7 @@ function hexToRgba(hex, alpha) {
 function printWeeklyReport() {
   const printWindow = window.open("", "_blank", "width=1200,height=900");
   printWindow.document.write(`
-    <html lang="pt-BR"><head><meta charset="UTF-8" /><title>RelatÛrio Semanal</title><style>body{font-family:Arial,sans-serif;padding:24px;color:#111827}h1,h2{margin-bottom:8px}table{width:100%;border-collapse:collapse;margin-top:16px}th,td{border:1px solid #d1d5db;padding:8px;text-align:left}</style></head><body>${document.querySelector("#page-content").innerHTML}</body></html>
+    <html lang="pt-BR"><head><meta charset="UTF-8" /><title>Relat√≥rio Semanal</title><style>body{font-family:Arial,sans-serif;padding:24px;color:#111827}h1,h2{margin-bottom:8px}table{width:100%;border-collapse:collapse;margin-top:16px}th,td{border:1px solid #d1d5db;padding:8px;text-align:left}</style></head><body>${document.querySelector("#page-content").innerHTML}</body></html>
   `);
   printWindow.document.close();
   printWindow.focus();
