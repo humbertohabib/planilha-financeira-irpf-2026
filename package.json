@@ -1,8 +1,8 @@
-{
-  "name": "planilha-financeira-irpf-2026",
+﻿{
+  "name": "landing-page-professora-mvp",
   "version": "1.0.0",
   "private": false,
-  "description": "MVP para acompanhamento IRPF 2026",
+  "description": "MVP de landing page para professora com formulário e automação simples",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

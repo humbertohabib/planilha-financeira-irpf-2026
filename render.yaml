@@ -1,7 +1,16 @@
-services:
+﻿services:
   - type: web
-    name: planilha-financeira-irpf-2026
+    name: landing-page-professora-mvp
     env: node
     plan: free
     buildCommand: ""
     startCommand: "npm start"
+    envVars:
+      - key: ADMIN_EMAIL
+        value: admin@professora.local
+      - key: ADMIN_PASSWORD
+        value: prof123
+      - key: WHATSAPP_GROUP_URL
+        sync: false
+      - key: SIGNATURE_BASE_URL
+        sync: false
